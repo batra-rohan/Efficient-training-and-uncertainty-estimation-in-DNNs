@@ -1,16 +1,16 @@
-# Efficient training and uncertainty estimation in DNNs with RHO-LOSS and ABNN
+# Efficient DNN Training and Uncertainty Estimation with RHO-LOSS and ABNN
 
 ## Project Overview
 
-[cite_start]This repository contains the code and resources for the course project carried as part of **CS772: Probabilistic Machine Learning** at IIT Kanpur under Prof. Piyush Rai[cite: 1, 2, 3, 4, 5, 6]. [cite_start]The project focuses on tackling two significant challenges in deep learning: the inefficiency of training on massive, noisy datasets and the lack of predictive uncertainty in standard Deep Neural Networks (DNNs)[cite: 15, 16, 19]. [cite_start]The experiments were conducted on the **CIFAR-10** and **CIFAR-100** datasets, with CIFAR-100 being a more complex challenge due to its higher number of classes[cite: 98].
+This repository contains the code and resources for the course project carried as part of **CS772: Probabilistic Machine Learning** at IIT Kanpur under Prof. Piyush Rai. The project focuses on tackling two significant challenges in deep learning: the inefficiency of training on massive, noisy datasets and the lack of predictive uncertainty in standard Deep Neural Networks (DNNs). The experiments were conducted on the **CIFAR-10** and **CIFAR-100** datasets, with CIFAR-100 being a more complex challenge due to its higher number of classes.
 
 Our pipeline integrates two primary techniques:
 
-1.  [cite_start]**RHO-LOSS**: A prioritized data selection strategy that improves training efficiency by focusing on data points that are learnable, worth learning, and not yet learned[cite: 10, 26, 27]. [cite_start]This method filters out redundant and noisy samples to achieve higher accuracy faster[cite: 18].
+1.  **RHO-LOSS**: A prioritized data selection strategy that improves training efficiency by focusing on data points that are learnable, worth learning, and not yet learned. This method filters out redundant and noisy samples to achieve higher accuracy faster.
 
-2.  [cite_start]**Adaptable Bayesian Neural Networks (ABNN)**: A framework used to convert a pre-trained DNN into a Bayesian Neural Network (BNN)[cite: 12]. [cite_start]By transforming normalization layers into their Bayesian counterparts and fine-tuning the model, we can equip the network with the ability to quantify predictive uncertainty with minimal computational overhead[cite: 21, 46, 47].
+2.  **Adaptable Bayesian Neural Networks (ABNN)**: A framework used to convert a pre-trained DNN into a Bayesian Neural Network (BNN). By transforming normalization layers into their Bayesian counterparts and fine-tuning the model, we can equip the network with the ability to quantify predictive uncertainty with minimal computational overhead.
 
-[cite_start]The goal of this project was to create a cohesive framework that efficiently trains a robust DNN and subsequently equips it with reliable uncertainty estimates[cite: 23].
+The goal of this project was to create a cohesive framework that efficiently trains a robust DNN and subsequently equips it with reliable uncertainty estimates.
 
 ---
 
@@ -71,35 +71,44 @@ Our integrated pipeline demonstrates significant improvements in both training e
 
 ### RHO-LOSS: Faster Training and Higher Accuracy
 
-[cite_start]By prioritizing more informative data points, RHO-LOSS not only sped up the training process but also led to better final model accuracy compared to the standard uniform data selection method[cite: 103, 115, 126]. [cite_start]The model trained with RHO-LOSS consistently achieved lower loss and higher accuracy in fewer epochs[cite: 103].
+By prioritizing more informative data points, RHO-LOSS not only sped up the training process but also led to better final model accuracy compared to the standard uniform data selection method. The model trained with RHO-LOSS consistently achieved lower loss and higher accuracy in fewer epochs.
 
 **Test Accuracy Comparison**
 
 | Dataset | Uniform Selection | RHO-LOSS Selection |
 | :--- | :---: | :---: |
-| CIFAR-10 | [cite_start]85.67% [cite: 116] | [cite_start]**89.23%** [cite: 116] |
-| CIFAR-100 | [cite_start]56% [cite: 127] | [cite_start]**57.78%** [cite: 127] |
+| CIFAR-10 | 85.67% | **89.23%** |
+| CIFAR-100 | 56% | **57.78%** |
 
 ### ABNN: Calibrated Uncertainty with Minimal Overhead
 
-[cite_start]Converting the RHO-LOSS-trained DNNs to ABNNs significantly improved the models' predictive uncertainty with only a minor trade-off in accuracy[cite: 131]. [cite_start]The improvement is quantified by the **Negative Log-Likelihood (NLL)** metric, where a lower value indicates better-calibrated uncertainty estimates[cite: 130].
+Converting the RHO-LOSS-trained DNNs to ABNNs significantly improved the models' predictive uncertainty with only a minor trade-off in accuracy. The improvement is quantified by the **Negative Log-Likelihood (NLL)** metric, where a lower value indicates better-calibrated uncertainty estimates.
 
 **Performance Comparison (DNN vs. ABNN)**
 
 | Dataset | Model | Test Accuracy | NLL (Test Set) |
 | :--- | :--- | :---: | :---: |
-| **CIFAR-10** | DNN | [cite_start]**89.23%** [cite: 132] | [cite_start]1.78 [cite: 132] |
-| | A-BNN | [cite_start]87.08% [cite: 132] | [cite_start]**0.59** [cite: 132] |
-| **CIFAR-100**| DNN | [cite_start]**57.78%** [cite: 135] | [cite_start]4.07 [cite: 135] |
-| | A-BNN | [cite_start]57.76% [cite: 135] | [cite_start]**1.93** [cite: 135] |
+| **CIFAR-10** | DNN | **89.23%** | 1.78 |
+| | A-BNN | 87.08% | **0.59** |
+| **CIFAR-100**| DNN | **57.78%** | 4.07 |
+| | A-BNN | 57.76% | **1.93** |
 
 ---
 
 ## Authors
 
 This project was developed by:
-* [cite_start]Aastha Punjabi (210017) [cite: 2]
-* [cite_start]Rohan Batra (210868) [cite: 3]
-* [cite_start]Priya (210771) [cite: 5]
-* [cite_start]Sharvani (210960) [cite: 6]
+* Aastha Punjabi (210017)
+* Rohan Batra (210868)
+* Priya (210771)
+* Sharvani (210960)
 
+---
+
+## References
+
+The methodologies used in this project are based on the following research papers:
+
+* **RHO-LOSS:** Mindermann, S. et al. (2022). [Prioritized Training on Points that are Learnable, Worth Learning, and Not Yet Learnt](https://proceedings.mlr.press/v162/mindermann22a/mindermann22a.pdf). *Proceedings of the International Conference on Machine Learning (ICML)*.
+
+* **ABNN:** Franchi, G. et al. (2024). [Make Me a BNN: A Simple Strategy for Estimating Bayesian Uncertainty from Pre-trained Models](https://openaccess.thecvf.com/content/CVPR2024/papers/Franchi_Make_Me_a_BNN_A_Simple_Strategy_for_Estimating_Bayesian_CVPR_2024_paper.pdf). *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)*.
